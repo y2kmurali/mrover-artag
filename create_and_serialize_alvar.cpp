@@ -109,6 +109,29 @@ int main() {
     Mat tag8_compressed = alvarDict->getByteListFromBits(tag8_mat);
     alvarDict->bytesList.push_back(tag8_compressed);
 
+    //tag 9
+    unsigned char tag9[5][5] = {{1, 1, 0, 1, 1},
+                                {1, 1, 0, 1, 1},
+                                {1, 0, 1, 0, 1},
+                                {1, 1, 1, 0, 0},
+                                {1, 1, 1, 0, 0}};
+    Mat tag9_mat = Mat(5, 5, CV_8UC1);
+    std::memcpy(tag9_mat.data, tag9, 5 * 5 * sizeof(unsigned char));
+    Mat tag9_compressed = alvarDict->getByteListFromBits(tag9_mat);
+    alvarDict->bytesList.push_back(tag9_compressed);
+
+    //tag 10
+    unsigned char tag10[5][5] = {{1, 1, 0, 1, 1},
+                                {1, 1, 0, 1, 1},
+                                {1, 0, 1, 0, 1},
+                                {0, 1, 1, 0, 0},
+                                {1, 0, 1, 1, 1}};
+    Mat tag10_mat = Mat(5, 5, CV_8UC1);
+    std::memcpy(tag10_mat.data, tag10, 5 * 5 * sizeof(unsigned char));
+    Mat tag10_compressed = alvarDict->getByteListFromBits(tag10_mat);
+    alvarDict->bytesList.push_back(tag10_compressed);
+
+
     //Now that we have all tags in dict, serialize them to a file
     cv::Mat store = alvarDict->bytesList;
     cv::FileStorage fs("alvar_dict.yml", cv::FileStorage::WRITE);
